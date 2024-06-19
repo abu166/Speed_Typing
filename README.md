@@ -10,6 +10,7 @@ Displays a random passage for the user to type.
 Calculates typing speed in WPM.
 Provides feedback based on typing speed.
 Graphical User Interface (GUI) with start button and real-time updates.
+
 How to Use
 
 Run the application.
