@@ -86,6 +86,7 @@ public class Frame extends JFrame implements ActionListener, KeyListener
 				g.drawString(passage.substring(50,100), g.getFont().getSize(), g.getFont().getSize()*7);
 				g.drawString(passage.substring(100,150), g.getFont().getSize(), g.getFont().getSize()*9);
 				g.drawString(passage.substring(150,200), g.getFont().getSize(), g.getFont().getSize()*11);
+				g.drawString(passage.substring(200,250), g.getFont().getSize(), g.getFont().getSize()*13);
 			}
 
 			//Displaying correctly typed passage in GREEN
@@ -113,7 +114,14 @@ public class Frame extends JFrame implements ActionListener, KeyListener
 					g.drawString(typedPass.substring(100,150), g.getFont().getSize(),g.getFont().getSize()*9);
 			}
 			if(typedPass.length()>150)
-				g.drawString(typedPass.substring(150,typed), g.getFont().getSize(),g.getFont().getSize()*11);
+			{
+				if(typed<200)
+					g.drawString(typedPass.substring(150,typed), g.getFont().getSize(),g.getFont().getSize()*11);
+				else
+					g.drawString(typedPass.substring(150,200), g.getFont().getSize(),g.getFont().getSize()*11);
+			}
+			if(typedPass.length()>200)
+				g.drawString(typedPass.substring(200,typed), g.getFont().getSize(),g.getFont().getSize()*13);
 			running=false; //Once we have made the line green we can make running false so that it does not keep repainting
 			//Since when we type again running will become true and it will make the substring from the start of line to next character green
 		}
@@ -148,18 +156,18 @@ public class Frame extends JFrame implements ActionListener, KeyListener
 		{
 			if(count==0)
 				start=LocalTime.now().toNanoOfDay();
-			else if(count==200) //Once all 200 characters are typed we will end the time and calculate time elapsed
+			else if(count==250) //Once all 200 characters are typed we will end the time and calculate time elapsed
 			{
 				end=LocalTime.now().toNanoOfDay();
 				elapsed=end-start;
 				seconds=elapsed/1000000000.0; //nano/1000000000.0 is seconds
-				WPM=(int)(((200.0/5)/seconds)*60); //number of character by 5 is one word by seconds is words per second * 60 WPM
+				WPM=(int)(((250.0/5)/seconds)*60); //number of character by 5 is one word by seconds is words per second * 60 WPM
 				ended=true;
 				running=false;
 				count++;
 			}
 			char[] pass=passage.toCharArray();
-			if(typed<200)
+			if(typed<250)
 			{
 				running=true;
 				if(e.getKeyChar()==pass[typed])
@@ -210,17 +218,17 @@ public class Frame extends JFrame implements ActionListener, KeyListener
 	public static String getPassage()
 	{
 		ArrayList<String> Passages=new ArrayList<String>();
-		String pas1="Many touch typists also use keyboard shortcuts or hotkeys when typing on a computer. This allows them to edit their document without having to take their hands off the keyboard to use a mouse. An example of a keyboard shortcut is pressing the Ctrl key plus the S key to save a";
-		String pas2="A virtual assistant (typically abbreviated to VA) is generally self-employed and provides professional administrative, technical, or creative assistance to clients remotely from a home office. Many touch typists also use keyboard shortcuts or hotkeys when typing on a computer";
-		String pas3="Frank Edward McGurrin, a court stenographer from Salt Lake City, Utah who taught typing classes, reportedly invented touch typing in 1888. On a standard keyboard for English speakers the home row keys are: \"ASDF\" for the left hand and \"JKL;\" for the right hand. The keyboar";
-		String pas4="Income before securities transactions was up 10.8 percent from $13.49 million in 1982 to $14.95 million in 1983. Earnings per share (adjusted for a 10.5 percent stock dividend distributed on August 26) advanced 10 percent to $2.39 in 1983 from $2.17 in 1982. Earnings may rise ";
-		String pas5="Historically, the fundamental role of pharmacists as a healthcare practitioner was to check and distribute drugs to doctors for medication that had been prescribed to patients. In more modern times, pharmacists advise patients and health care providers on the selection, dosage";
-		String pas6="Proofreader applicants are tested primarily on their spelling, speed, and skill in finding errors in the sample text. Toward that end, they may be given a list of ten or twenty classically difficult words and a proofreading test, both tightly timed. The proofreading test will o";
-		String pas7="In one study of average computer users, the average rate for transcription was 33 words per minute, and 19 words per minute for composition. In the same study, when the group was divided into \"fast\", \"moderate\" and \"slow\" groups, the average speeds were 40 wpm, 35 wpm, an";
-		String pas8="A teacher's professional duties may extend beyond formal teaching. Outside of the classroom teachers may accompany students on field trips, supervise study halls, help with the organization of school functions, and serve as supervisors for extracurricular activities. In some e";
-		String pas9="Web designers are expected to have an awareness of usability and if their role involves creating mark up then they are also expected to be up to date with web accessibility guidelines. The different areas of web design include web graphic design; interface design; authoring, i";
-		String pas10="A data entry clerk is a member of staff employed to enter or update data into a computer system. Data is often entered into a computer from paper documents using a keyboard. The keyboards used can often have special keys and multiple colors to help in the task and speed up th";
-		
+		String pas1="Many touch typists also use keyboard shortcuts or hotkeys when typing on a computer. This allows them to edit their document without having to take their hands off the keyboard to use a mouse. An example of a keyboard shortcut is pressing the Ctrl key plus the S key to save a document quickly.";
+		String pas2="A virtual assistant (typically abbreviated to VA) is generally self-employed and provides professional administrative, technical, or creative assistance to clients remotely from a home office. Many touch typists also use keyboard shortcuts or hotkeys when typing on a computer.";
+		String pas3="Frank Edward McGurrin, a court stenographer from Salt Lake City, Utah who taught typing classes, reportedly invented touch typing in 1888. On a standard keyboard for English speakers the home row keys are: \"ASDF\" for the left hand and \"JKL;\" for the right hand. The keyboard layout is designed to facilitate touch typing.";
+		String pas4="Income before securities transactions was up 10.8 percent from $13.49 million in 1982 to $14.95 million in 1983. Earnings per share (adjusted for a 10.5 percent stock dividend distributed on August 26) advanced 10 percent to $2.39 in 1983 from $2.17 in 1982. Earnings may rise further with improved market conditions.";
+		String pas5="Historically, the fundamental role of pharmacists as a healthcare practitioner was to check and distribute drugs to doctors for medication that had been prescribed to patients. In more modern times, pharmacists advise patients and health care providers on the selection, dosage, interactions, and side effects of medications.";
+		String pas6="Proofreader applicants are tested primarily on their spelling, speed, and skill in finding errors in the sample text. Toward that end, they may be given a list of ten or twenty classically difficult words and a proofreading test, both tightly timed. The proofreading test will often include deliberately placed errors to identify.";
+		String pas7="In one study of average computer users, the average rate for transcription was 33 words per minute, and 19 words per minute for composition. In the same study, when the group was divided into \"fast\", \"moderate\" and \"slow\" groups, the average speeds were 40 wpm, 35 wpm, and 23 wpm respectively.";
+		String pas8="A teacher's professional duties may extend beyond formal teaching. Outside of the classroom teachers may accompany students on field trips, supervise study halls, help with the organization of school functions, and serve as supervisors for extracurricular activities. In some educational systems, teachers also have a role in curriculum development.";
+		String pas9="Web designers are expected to have an awareness of usability and if their role involves creating markup, then they are also expected to be up to date with web accessibility guidelines. The different areas of web design include web graphic design; interface design; authoring, including standardized code and proprietary software; user experience design; and search engine optimization.";
+		String pas10="A data entry clerk is a member of staff employed to enter or update data into a computer system. Data is often entered into a computer from paper documents using a keyboard. The keyboards used can often have special keys and multiple colors to help in the task and speed up the entry process. Data entry clerks must ensure accuracy and efficiency in their work.";
+
 		Passages.add(pas1);
 		Passages.add(pas2);
 		Passages.add(pas3);
@@ -235,8 +243,8 @@ public class Frame extends JFrame implements ActionListener, KeyListener
 		Random rand=new Random();
 		int place=rand.nextInt(Passages.size());
 		
-		String toReturn=Passages.get(place).substring(0,200); 
-		if(toReturn.charAt(199)==32) 
+		String toReturn=Passages.get(place).substring(0,250);
+		if(toReturn.charAt(249)==32)
 		{
 			toReturn=toReturn.strip(); 
 			toReturn=toReturn+"."; //Adding a full stop at the last instead of a space
