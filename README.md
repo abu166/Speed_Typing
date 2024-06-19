@@ -11,7 +11,7 @@ Calculates typing speed in WPM.
 Provides feedback based on typing speed.
 Graphical User Interface (GUI) with start button and real-time updates.
 
-How to Use
+How to Use:
 
 Run the application.
 Click the "Start" button to begin the typing test.
